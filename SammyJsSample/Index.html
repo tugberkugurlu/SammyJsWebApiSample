@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Cars Store</title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <style type="text/css">
+        #main ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        #main ul li {
+            list-style-type: none;
+            padding: 10px;
+            border: 1px solid gray;
+            background-color: #EEE;
+            margin-bottom: 5px;
+        }
+
+        #single-container {
+            list-style-type: none;
+            padding: 10px;
+            border: 1px solid gray;
+            background-color: #EEE;
+            margin-bottom: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="header">
+            <h1>Cars Store</h1>
+        </div>
+
+        <div id="main">
+
+            <ul data-bind="foreach: cars, visible: !$root.isSinglePageActive()">
+                <li>
+                    <div class="pull-left">
+                        Car Name: <span data-bind="text: Make"></span>, <span data-bind="text: Model"></span> - <span data-bind="text: Year"></span>
+                    </div>
+                    <div class="pull-right">
+                        <a data-bind="attr: { href: '#/item/' + Id }" class="btn">Details</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </li>
+            </ul>
+
+            <div id="single-container" data-bind="visible: $root.isSinglePageActive(), with: selectedCar">
+                <div>
+                    <div class="pull-left">
+                        <h2>
+                            <span data-bind="text: Make"></span>, <span data-bind="text: Model"></span> (<span data-bind="text: Year"></span>)
+                        </h2>
+                    </div>
+                    <div class="pull-right">
+                        <a href="#/" class="btn">Back to List View</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                
+                <div>
+                    Price: <span data-bind="text: Price"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/Scripts/jquery-1.9.1.js"></script>
+    <script src="/Scripts/sammy-0.7.4.js"></script>
+    <script src="/Scripts/knockout-2.2.1.debug.js"></script>
+    <script src="/Scripts/app/cars.js"></script>
+</body>
+</html>
